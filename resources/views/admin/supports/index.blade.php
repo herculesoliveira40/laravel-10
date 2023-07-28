@@ -15,6 +15,10 @@
                 <td>{{$support->subject}}</td>
                 <td>{{$support->status}}</td>
                 <td>{{$support->body}}</td>
+                <td>
+                    <a href="{{route('supports.show', [$support->id])}}">=</a>
+                    <a href="{{route('supports.edit', [$support->id])}}">/</a>
+                </td>
             </tr>
         @endforeach
     </tbody>
