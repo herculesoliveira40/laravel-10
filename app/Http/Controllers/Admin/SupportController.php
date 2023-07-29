@@ -40,6 +40,7 @@ class SupportController extends Controller
         return view('admin/supports/show', compact('support'));
     }
 
+
     public function edit(Support $support, int $id)
     {
         if(!$support = $support->where('id', $id)->first()){
@@ -58,6 +59,14 @@ class SupportController extends Controller
         //     'subject', 'body'
         // ]));
         $support->fill($request->all())->save();
+
+        return redirect()->route('supports.index');
+    }
+
+    public function delete( int $id)
+    {
+        $support = Support::find($id);
+        $support->delete();
 
         return redirect()->route('supports.index');
     }

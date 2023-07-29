@@ -24,6 +24,7 @@ Route::get('/supports', [SupportController::class, 'index'])->name('supports.ind
 Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
 Route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
 Route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
+Route::delete('/supports/delete/{id}', [SupportController::class, 'delete'])->name('supports.delete');
 
 Route::get('/s', [SupportController::class, 'index'])->name('supports.index');
 
