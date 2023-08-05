@@ -1,1 +1,1 @@
-Duvida {{$support}}
+Duvida {{$support->id}}
