@@ -10,15 +10,15 @@
 
     </thead>
     <tbody>
-        @foreach($supports as $support)
+        @foreach($supports->items() as $support)
             <tr>
-                <td>{{$support['subject']}}</td>
-                <td>{{$support['status']}}</td>
-                <td>{{$support['body']}}</td>
+                <td>{{$support->subject}}</td>
+                <td>{{$support->status}}</td>
+                <td>{{$support->body}}</td>
                 <td>
-                    <a href="{{route('supports.show', $support['id'])}}">  =  </a>
-                    <a href="{{route('supports.edit', $support['id'])}}">  /  </a>
-                    <form method="post" action="{{route('supports.delete', [$support['id']])}}">
+                    <a href="{{route('supports.show', $support->id)}}">  =  </a>
+                    <a href="{{route('supports.edit', $support->id)}}">  /  </a>
+                    <form method="post" action="{{route('supports.delete', [$support->id])}}">
                         @csrf 
                         @method('delete')                   
                         <input type="submit" value=" X ">    
@@ -31,3 +31,8 @@
 
 
 </table>
+
+<x-pagination 
+    :paginator="$supports" 
+    :appends="$filters"
+    />
