@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupport;
 use App\Http\Resources\SupportResource;
@@ -10,7 +11,7 @@ use App\Services\SupportService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class SupportController extends Controller
+class SupportApiController extends Controller
 {
     public function __construct(
         protected SupportService $service
@@ -57,9 +58,19 @@ class SupportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreSupport $request, string $id)
     {
-        //
+        $support = $this->service->update(
+            UpdateSupportDTO::makeFromRequest($request, $id)
+        );
+
+        if (!$support) {
+            return response()->json([
+                'error' => 'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        return new SupportResource($support);
     }
 
     /**

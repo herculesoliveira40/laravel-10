@@ -27,13 +27,14 @@ class StoreSupport extends FormRequest
             'body' => 'required|string|max:1000|min:3', 
         ];
 
-        if($this->method() === 'PUT') {
+        if($this->method() === 'PUT' || $this->method() === 'PATCH') {
+            $id = $this->support ?? $this->id; //id route web, support route api
             $rules['subject'] = [
                 'required',
                 'min:3',
                 'max:255',
                 // "unique:supports, subject, {$this->id}, id",
-                Rule::unique('supports')->ignore($this->id),
+                Rule::unique('supports')->ignore($id),
             ];
 
         }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\SupportController;
+use App\Http\Controllers\Api\SupportApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,4 +10,4 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::apiResource('/supports', SupportController::class);
+Route::apiResource('/supports', SupportApiController::class);
