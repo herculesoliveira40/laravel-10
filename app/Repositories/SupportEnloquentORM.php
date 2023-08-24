@@ -28,7 +28,7 @@ class SupportEnloquentORM implements SupportRepositoryInterface
         return new PaginationPresenter($result);
     }
     
-    public function getSupportAll(string $filter = null) : array
+    public function findSupportAll(string $filter = null) : array
     {
         return $this->model
             ->where(function ($query) use ($filter) {
@@ -41,7 +41,7 @@ class SupportEnloquentORM implements SupportRepositoryInterface
             ->toArray();
     }
 
-    public function getSupportOne(int $id) : stdClass | null
+    public function findSupportOne(int $id) : stdClass | null
     {
         $support = $this->model->find($id);
         

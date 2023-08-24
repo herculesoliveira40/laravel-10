@@ -49,7 +49,7 @@ class SupportController extends Controller
 
     public function show(int $id)
     {
-        $support = $this->service->getSupportOne($id);
+        $support = $this->service->findSupportOne($id);
         return view('admin/supports/show', compact('support'));
     }
 
@@ -57,7 +57,7 @@ class SupportController extends Controller
     public function edit(Support $support, int $id)
     {
         // if(!$support = $support->where('id', $id)->first()){
-        if(!$support = $this->service->getSupportOne($id)){
+        if(!$support = $this->service->findSupportOne($id)){
             return back();
         }
 

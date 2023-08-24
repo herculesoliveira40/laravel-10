@@ -24,14 +24,14 @@ class SupportService
         );
     }
 
-    public function getSupportAll(string $filter = null) : array
+    public function findSupportAll(string $filter = null) : array
     {
-        return $this->repository->getSupportAll($filter);
+        return $this->repository->findSupportAll($filter);
     }
 
-    public function getSupportOne(int $id) : stdClass | null
+    public function findSupportOne(int $id) : stdClass | null
     {
-        return $this->repository->getSupportOne($id);
+        return $this->repository->findSupportOne($id);
     }
 
     public function New(CreateSupportDTO $dto) : stdClass
