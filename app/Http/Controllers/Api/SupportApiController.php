@@ -22,10 +22,17 @@ class SupportApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        // $supports = Support::paginate();
+        $supports = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerPage: $request->get('per_page', 5),
+            filter: $request->filter,
+        );
+        // dd($supports->items());
+            return SupportResource::collection(collect($supports->items()));
+    }    
 
     /**
      * Store a newly created resource in storage.
