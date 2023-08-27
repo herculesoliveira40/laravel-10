@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Adapters\ApiAdapters;
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupport;
+use App\Http\Resources\DefaultResource;
 use App\Http\Resources\SupportResource;
 use App\Services\SupportService;
 use Illuminate\Http\Request;
@@ -31,17 +33,7 @@ class SupportApiController extends Controller
             filter: $request->filter,
         );
         // dd($supports->items());
-            return SupportResource::collection(collect($supports->items()))
-            ->additional([
-                'meta' => [
-                    'total' => $supports->total(),
-                    'is_first_page' => $supports->isFirstPage(),
-                    'is_last_page' => $supports->isLastPage(),
-                    'current_page' => $supports->currentPage(),
-                    'next_page' => $supports->getNumberNextPage(),
-                    'previous_page' => $supports->getNumberPreviousPage(),
-                ]
-            ]) ;
+        return ApiAdapters::toJson($supports);
     }    
 
     /**
