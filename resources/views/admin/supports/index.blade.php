@@ -1,4 +1,13 @@
-<h1> Lista de suportes</h1>
+@extends('admin.layouts.main')
+
+
+@section('title', 'Index')
+
+@section('header')
+    <h1> Lista de suportes</h1>
+@endsection
+
+@section('content')
 
 <a href="{{route('supports.create') }}">Criar Suport</a>
 
@@ -36,3 +45,5 @@
     :paginator="$supports" 
     :appends="$filters"
     />
+
+@endsection    
